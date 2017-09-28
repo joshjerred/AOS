@@ -1,11 +1,15 @@
 #!/bin/bash
 
-DATE=$(date +"%Y-%m-%d_%H%M")
+now=$(date +"%Y-%m-%d_%H%M")
+TEXT="CALLSIGN"
 
-fswebcam -r 320x256  /SIS/tmpdir/tmp.png
-echo IMAGE TAKEN RESIZE
-convert /SIS/tmpdir/tmp.png -resize 320x256! /SIS/tmpdir/tmp
+fswebcam -r 320x256  ./tmpdir/tmp.png
+echo IMAGE TAKEN COPYING
+convert -font avantgarde-demi -fill blue -pointsize 36 -draw "text 5,30 '$TEXT'" ./tmpdir/tmp.png ./tmpdir/tmp.png
+cp ./tmpdir/tmp.png ./images/$now.png
+echo -------------------
+convert ./tmpdir/tmp.png -resize 320x256! ./tmpdir/tmp
 echo IMAGE RESIZED CONVERTING TO .WAV FILE
-./sstv /SIS/tmpdir/tmp 22050
+./sstv ./tmpdir/tmp 22050
 echo IMAGE CONVERTED: PLAYING AUDIO
-aplay /SIS/tmpdir/tmp.wav
+aplay ./tmpdir/tmp.wav

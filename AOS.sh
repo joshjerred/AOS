@@ -3,7 +3,7 @@
 now=$(date +"%Y-%m-%d_%H%M")
 TEXT="CALLSIGN"
 
-fswebcam -r 320x256  ./tmpdir/tmp.png
+raspistill -o -w 640 -h 480  ./tmpdir/tmp.png
 echo IMAGE TAKEN COPYING
 convert -font avantgarde-demi -fill blue -pointsize 36 -draw "text 5,30 '$TEXT'" ./tmpdir/tmp.png ./tmpdir/tmp.png
 cp ./tmpdir/tmp.png ./images/$now.png

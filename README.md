@@ -12,6 +12,11 @@ All compiled, requires aplay, imagemagick, fswebcam.
 fswebcam can be replaced with raspistill if you want to use a PI cam
 Replace line 5 with "raspistill -t 1 --width 320 --height 256 -e png -o ./tmpdir/tmp.png"
 
+Do "dos2unix AOS.sh" inorder to unbreak stuff while attempting to update the main script. Obviously be in the AOS Directory
+
+
+(These are just notes to remind me how to unbreak everything I think)
+
 ___________
 How to run:
 Simply do "bash AOS.sh"

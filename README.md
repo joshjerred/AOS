@@ -1,6 +1,8 @@
 # AOS
 Atmospheric Observation System
 
+To be completly honest, I have absolutly no clue how this works anymore. I've been working on it on and off over the past year and every time I try to clean it up I just break something. If you legitematly want something usable then you aren't looking in the right place.
+
 Credit to KI4MCW for the C script to convert the image to an audio file! It can be found here:
 https://sites.google.com/site/ki4mcw/Home/sstv-via-uc
 
@@ -19,4 +21,7 @@ Do "dos2unix AOS.sh" inorder to unbreak stuff while attempting to update the mai
 
 ___________
 How to run:
-Simply do "bash AOS.sh"
+1. Simply do "bash AOS.sh"
+2. Spend 15 to 20 hours finding what packages you are missing
+3. Spend another 5 hours fixing bugs that are now a thing because the packages are now updated
+4. Profit?

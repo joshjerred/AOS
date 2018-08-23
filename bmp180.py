@@ -116,14 +116,9 @@ def readBmp180(addr=DEVICE):
 def main():
     
   (chip_id, chip_version) = readBmp180Id()
-  print("Chip ID     : {0}".format(chip_id))
-  print("Version     : {0}".format(chip_version))
-
-  print
   
   (temperature,pressure)=readBmp180()
-  print("Temperature : {0} C".format(temperature))
-  print("Pressure    : {0} mbar".format(pressure))
+  print("PRES: {0} mbar".format(pressure))
   
 if __name__=="__main__":
    main()

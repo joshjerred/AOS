@@ -1,10 +1,10 @@
 #!/usr/bin/python
 #--------------------------------------
-#    ___  ___  _ ____          
-#   / _ \/ _ \(_) __/__  __ __ 
-#  / , _/ ___/ /\ \/ _ \/ // / 
-# /_/|_/_/  /_/___/ .__/\_, /  
-#                /_/   /___/   
+#    ___  ___  _ ____
+#   / _ \/ _ \(_) __/__  __ __
+#  / , _/ ___/ /\ \/ _ \/ // /
+# /_/|_/_/  /_/___/ .__/\_, /
+#                /_/   /___/
 #
 #           bmp180.py
 #  Read data from a digital pressure sensor.
@@ -18,12 +18,12 @@
 import smbus
 import time
 from ctypes import c_short
- 
+
 DEVICE = 0x77 # Default device I2C address
- 
+
 #bus = smbus.SMBus(0)  # Rev 1 Pi uses 0
-bus = smbus.SMBus(1) # Rev 2 Pi uses 1 
- 
+bus = smbus.SMBus(1) # Rev 2 Pi uses 1
+
 def convertToString(data):
   # Simple function to convert binary data into
   # a string
@@ -42,7 +42,7 @@ def readBmp180Id(addr=DEVICE):
   REG_ID     = 0xD0
   (chip_id, chip_version) = bus.read_i2c_block_data(addr, REG_ID, 2)
   return (chip_id, chip_version)
-  
+
 def readBmp180(addr=DEVICE):
   # Register Addresses
   REG_CALIB  = 0xAA
@@ -51,10 +51,10 @@ def readBmp180(addr=DEVICE):
   REG_LSB    = 0xF7
   # Control Register Address
   CRV_TEMP   = 0x2E
-  CRV_PRES   = 0x34 
+  CRV_PRES   = 0x34
   # Oversample setting
   OVERSAMPLE = 3    # 0 - 3
-  
+
   # Read calibration data
   # Read calibration data from EEPROM
   cal = bus.read_i2c_block_data(addr, REG_CALIB, 22)
@@ -114,11 +114,11 @@ def readBmp180(addr=DEVICE):
   return (temperature/10.0,pressure/100.0)
 
 def main():
-    
+
   (chip_id, chip_version) = readBmp180Id()
-  
+
   (temperature,pressure)=readBmp180()
-  print("PRES: {0} mbar".format(pressure))
-  
+  print("P {0} mbar".format(pressure))
+
 if __name__=="__main__":
    main()

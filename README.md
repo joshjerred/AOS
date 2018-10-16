@@ -32,3 +32,10 @@ DS18B20 - Temp Probe
 BMP180 - Pressure Sensors
 General Voltage Sensor (0-25v DC)
 NEO-6M - GPS
+
+Things to add from GPS:
+Lat/Long
+Altitude
+Speed
+Climb
+Status

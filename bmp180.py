@@ -118,7 +118,7 @@ def main():
   (chip_id, chip_version) = readBmp180Id()
 
   (temperature,pressure)=readBmp180()
-  print("P {0} mbar".format(pressure))
+  print("P {0} mbar".format(pressure+30))
 
 if __name__=="__main__":
    main()

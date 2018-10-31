@@ -1,11 +1,15 @@
 #!/bin/bash
+gpspipe -w -n 10 |   grep -m 1 lat > gpstmp
+echo GETTING GPS DATA
+sudo bash gpsparse.sh
 NOW=$(date +"%m-%d %H%M")
 CALL="KD9GDC"
 VOLT="V4.5"
 TMP="$(sudo python testscript.py)"
 PRES="$(sudo python bmp180.py)"
-GPSLATLONG="33.45817N 79.566635W"
-GPSSPEED="50mph"
+LAT=""
+LON=""
+SPEED="50mph"
 GPSALT="10"
 GPSCLIMB="+5.01 f/s"
 GPSFIXES="56"

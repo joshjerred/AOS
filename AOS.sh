@@ -1,26 +1,27 @@
 #!/bin/bash
-gpspipe -w -n 10 |   grep -m 1 lat > gpstmp
-echo GETTING GPS DATA
-sudo bash gpsparse.sh
-NOW=$(date +"%m-%d %H%M")
+gpspipe -w -n 10 |   grep -m 1 mode > gpstmp
+NOW=$(date +"%m-%d--%H%M")
 CALL="KD9GDC"
-VOLT="V4.5"
 TMP="$(sudo python testscript.py)"
 PRES="$(sudo python bmp180.py)"
-LAT=""
-LON=""
-SPEED="50mph"
-GPSALT="10"
-GPSCLIMB="+5.01 f/s"
-GPSFIXES="56"
-GPSSTATUS="GO"
+GPSLAT=$(cat ./gpstmp|jq .lat)
+GPSLON=$(cat ./gpstmp|jq .lon)
+GPSSPEED=$(cat ./gpstmp|jq .speed)
+GPSALT=$(cat ./gpstmp|jq .alt)
+GPSCLIMB=$(cat ./gpstmp|jq .climb)
+GPSSTATUS=$(cat ./gpstmp|jq .mode)
 raspistill -t 1 --width 320 --height 256 -e png -o ./tmpdir/tmp
 echo IMAGE TAKEN COPYING
 convert -font avantgarde-demi -fill red -pointsize 20 -draw "text 3,15 '$CALL'" ./tmpdir/tmp ./tmpdir/tmp.png
-convert -font avantgarde-demi -fill green3 -pointsize 20 -draw "text 260,15 '$VOLT'" ./tmpdir/tmp.png ./tmpdir/tmp.png
+convert -font avantgarde-demi -fill green3 -pointsize 15 -draw "text 160,15 '$GPSSPEED kph'" ./tmpdir/tmp.png ./tmpdir/tmp.png
+convert -font avantgarde-demi -fill green3 -pointsize 15 -draw "text 160,30 'VSI $GPSCLIMB m/min'" ./tmpdir/tmp.png ./tmpdir/tmp.png
 convert -font avantgarde-demi -fill green3 -pointsize 20 -draw "text 3,30 '$NOW'" ./tmpdir/tmp.png ./tmpdir/tmp.png
 convert -font avantgarde-demi -fill green3 -pointsize 20 -draw "text 3,45 '$PRES'" ./tmpdir/tmp.png ./tmpdir/tmp.png
 convert -font avantgarde-demi -fill green3 -pointsize 20 -draw "text 3,60 '$TMP'" ./tmpdir/tmp.png ./tmpdir/tmp.png
+convert -font avantgarde-demi -fill green3 -pointsize 20 -draw "text 3,205 'Lat $GPSLAT'" ./tmpdir/tmp.png ./tmpdir/tmp.png
+convert -font avantgarde-demi -fill green3 -pointsize 20 -draw "text 3,220 'Lon $GPSLON'" ./tmpdir/tmp.png ./tmpdir/tmp.png
+convert -font avantgarde-demi -fill green3 -pointsize 20 -draw "text 3,235 '$GPSALT M'" ./tmpdir/tmp.png ./tmpdir/tmp.png
+convert -font avantgarde-demi -fill green3 -pointsize 20 -draw "text 3,250 'Mode $GPSSTATUS'" ./tmpdir/tmp.png ./tmpdir/tmp.png
 cp ./tmpdir/tmp.png ./images/$NOW.png
 echo -------------------
 convert ./tmpdir/tmp.png -resize 320x256! ./tmpdir/tmp

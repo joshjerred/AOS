@@ -30,4 +30,5 @@ echo IMAGE RESIZED CONVERTING TO .WAV FILE
 ./pisstv ./tmpdir/tmp.png 11050
 echo IMAGE CONVERTED: PLAYING AUDIO
 mv ./tmpdir/tmp.png.wav ./tmpdir/tmp.wav
-aplay ./tmpdir/tmp.wav
+sox ./tmpdir/tmp.wav ./tmpdir/output.wav vol 12 dB
+aplay ./tmpdir/output.wav

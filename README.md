@@ -6,13 +6,17 @@ To be completely honest, I have absolutely no clue how this works anymore. I've 
 Credit to KI4MCW for the C script to convert the image to an audio file! It can be found here:
 https://sites.google.com/site/ki4mcw/Home/sstv-via-uc
 
+REQUIRED PACKAGES:
+aplay
+imagemagick
+gpsd with gpspipe
+sox
+jq
 
-Only the basic bash script that takes a picture with a webcam, changes the size, converts to a Martin1 SSTV .wav file, then plays the audio via the aplay command.
-
-All compiled, requires aplay, imagemagick, fswebcam.
-
-fswebcam can be replaced with raspistill if you want to use a PI cam
-Replace line 5 with "raspistill -t 1 --width 320 --height 256 -e png -o ./tmpdir/tmp.png"
+Interfacing:
+Enable I2C
+Enable 1-wire
+Enable Camera
 
 Do "dos2unix AOS.sh" in order to unbreak stuff while attempting to update the main script. Obviously be in the AOS Directory
 
@@ -30,12 +34,4 @@ ___________
 Sensors:
 DS18B20 - Temp Probe
 BMP180 - Pressure Sensors
-General Voltage Sensor (0-25v DC)
 NEO-6M - GPS
-
-Things to add from GPS:
-Lat/Long
-Altitude
-Speed
-Climb
-Status

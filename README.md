@@ -20,6 +20,7 @@ Enable Camera
 
 Do "dos2unix AOS.sh" in order to unbreak stuff while attempting to update the main script. Obviously be in the AOS Directory
 
+cgps to troubleshoot the gps
 
 (These are just notes to remind me how to unbreak everything I think)
 
